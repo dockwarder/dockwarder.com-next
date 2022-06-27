@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { NestedSidebarLayout } from "../../../layouts/NestedSidebarLayout";
-import { NextPageWithLayout } from "../../_app";
+import { NestedSidebarLayout } from "../../layouts/NestedSidebarLayout";
+import { NextPageWithLayout } from "../_app";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { getAllPosts, getPostBySlug } from "../../../services/blogService";
-import { PostList } from "../../../components/PostList";
-import { Post } from "../../../typings/Post";
+import { getAllPosts, getPostBySlug } from "../../lib/services/blogService";
+import { PostList } from "../../components/PostList";
+import { Post } from "../../typings/Post";
 
 interface Props {
   post: Post;
@@ -16,7 +16,7 @@ export const SinglePost: NextPageWithLayout<Props> = ({ post, mdxSource }) => {
   const { title } = post.frontMatter;
 
   return (
-    <main className="col-span-9">
+    <main className="col-span-7">
       <h1>{title}</h1>
       <MDXRemote {...mdxSource} />
     </main>

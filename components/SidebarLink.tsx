@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { NavigationLink } from "../data/navigation.d";
+import { NavigationLink } from "../lib/data/navigation.d";
 import cn from "classnames";
 
 interface Props {

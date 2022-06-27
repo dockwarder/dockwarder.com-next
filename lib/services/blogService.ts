@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Post } from "../typings/Post";
+import { Post } from "../../typings/Post";
 
-const postsDirectory = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "content", "posts");
 
 const getFilePath = (filename) => path.join(postsDirectory, filename);
 

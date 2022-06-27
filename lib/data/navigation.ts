@@ -4,7 +4,7 @@ import uniqueId from "lodash/uniqueId";
 // Icons
 import {
   HomeIcon,
-  // AcademicCapIcon,
+  AcademicCapIcon,
   AnnotationIcon,
 } from "@heroicons/react/solid";
 
@@ -19,13 +19,13 @@ export const navigationLists: NavigationList[] = [
         href: "/",
         icon: HomeIcon,
       },
-      // {
-      //   id: uniqueId("nav-"),
-      //   label: "Curriculum Vitae",
-      //   subtitle: "What I did so far",
-      //   href: "/cv",
-      //   icon: AcademicCapIcon,
-      // },
+      {
+        id: uniqueId("nav-"),
+        label: "Curriculum Vitae",
+        subtitle: "What I did so far",
+        href: "/cv",
+        icon: AcademicCapIcon,
+      },
     ],
   },
   {

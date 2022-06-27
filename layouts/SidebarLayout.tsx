@@ -6,7 +6,7 @@ import { Sidebar } from "../components/Sidebar";
 import { SidebarTitle } from "../components/SidebarTitle";
 
 // Data
-import { navigationLists } from "../data/navigation";
+import { navigationLists } from "../lib/data/navigation";
 import { SidebarLink } from "../components/SidebarLink";
 
 interface Props {

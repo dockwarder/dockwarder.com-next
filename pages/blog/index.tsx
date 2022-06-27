@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import { PostList } from "../../components/PostList";
 import { NestedSidebarLayout } from "../../layouts/NestedSidebarLayout";
-import { getAllPosts } from "../../services/blogService";
+import { getAllPosts } from "../../lib/services/blogService";
 import { NextPageWithLayout } from "../_app";
 
 export const Blog: NextPageWithLayout = () => {
