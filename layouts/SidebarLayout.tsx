@@ -23,7 +23,7 @@ export const SidebarLayout: FC<Props> = ({ children }) => {
           </a>
         </Link>
 
-        <nav className="mt-10">
+        <nav className="mt-5">
           {navigationLists.map((navigationList) => (
             <React.Fragment key={navigationList.id}>
               {navigationList.label && (

@@ -29,7 +29,7 @@ export const SidebarPost: FC<Props> = ({ post }) => {
           <span className="block text-sm font-medium">
             {post.frontMatter.title}
           </span>
-          <span className="block text-xs mt-1">{post.frontMatter.date}</span>
+          <span className="block text-xs mt-0.5">{post.frontMatter.date}</span>
         </div>
       </a>
     </Link>

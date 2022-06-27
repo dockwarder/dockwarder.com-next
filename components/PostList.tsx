@@ -18,7 +18,7 @@ export const PostList: FC<Props> = ({ posts }) => {
           <SidebarTitle>Posts</SidebarTitle>
         </a>
       </Link>
-      <div className="mt-10">
+      <div className="mt-5">
         {posts.map((post) => (
           <SidebarPost key={post.slug} post={post} />
         ))}
