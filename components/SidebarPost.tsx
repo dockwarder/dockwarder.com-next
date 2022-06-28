@@ -18,8 +18,8 @@ export const SidebarPost: FC<Props> = ({ post }) => {
   const { query } = useRouter();
   const isActive = query.slug === post.slug;
   const additionalClasses = cn({
-    "bg-neutral-900 text-white": isActive,
-    "hover:bg-neutral-100": !isActive,
+    "bg-neutral-900 dark:bg-white text-white dark:text-black": isActive,
+    "hover:bg-neutral-200 dark:hover:bg-neutral-700": !isActive,
   });
 
   return (

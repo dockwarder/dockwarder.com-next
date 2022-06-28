@@ -1,17 +1,12 @@
-import { NavigationList } from "./navigation.d";
+import { NavigationList } from "../typings/Navigation";
 import uniqueId from "lodash/uniqueId";
 
 // Icons
+import { FaGithub, FaTwitter } from "react-icons/fa";
 import {
-  HomeIcon,
-  AcademicCapIcon,
-  AnnotationIcon,
-} from "@heroicons/react/solid";
-import { FaGithub, FaTwitter, FaYoutube } from "react-icons/fa";
-import {
+  RiCommandFill,
   RiGitMergeFill,
   RiHomeSmileFill,
-  RiRemoteControl2Fill,
   RiRssFill,
   RiUser5Fill,
 } from "react-icons/ri";
@@ -47,13 +42,6 @@ export const navigationLists: NavigationList[] = [
         href: "/clients",
         icon: RiUser5Fill,
       },
-      {
-        id: uniqueId("nav-"),
-        label: "Games",
-        subtitle: "Play them here",
-        href: "/games",
-        icon: RiRemoteControl2Fill,
-      },
     ],
   },
   {
@@ -66,6 +54,13 @@ export const navigationLists: NavigationList[] = [
         subtitle: "Thoughts & Guides",
         href: "/blog",
         icon: RiRssFill,
+      },
+      {
+        id: uniqueId("nav-"),
+        label: "Uses",
+        subtitle: "Sick Picks",
+        href: "/uses",
+        icon: RiCommandFill,
       },
     ],
   },
@@ -82,8 +77,8 @@ export const navigationLists: NavigationList[] = [
       },
       {
         id: uniqueId("nav-"),
-        label: "GitHub",
-        href: "https://github.com/dockwarder",
+        label: "Source Code",
+        href: "https://github.com/dockwarder/dockwarder.com",
         icon: FaGithub,
         target: "_blank",
       },

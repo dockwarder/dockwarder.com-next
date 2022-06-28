@@ -1,3 +1,5 @@
+import { SVGProps } from "react";
+
 export type NavigationLink = {
   id: string;
   label: string;

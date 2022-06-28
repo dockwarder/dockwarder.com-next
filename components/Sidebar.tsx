@@ -21,7 +21,7 @@ export const Sidebar: FC<Props> = ({
 
   return (
     <aside
-      className={`${additionalClasses} relative h-screen pt-3 px-2 border-r border-neutral-300`}
+      className={`${additionalClasses} bg-white dark:bg-black relative h-screen pt-3 px-2 border-r border-neutral-300 dark:border-neutral-700`}
     >
       {children}
     </aside>

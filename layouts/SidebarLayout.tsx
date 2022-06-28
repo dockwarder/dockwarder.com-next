@@ -6,8 +6,9 @@ import { Sidebar } from "../components/Sidebar";
 import { SidebarTitle } from "../components/SidebarTitle";
 
 // Data
-import { navigationLists } from "../lib/data/navigation";
+import { navigationLists } from "../lib/navigation";
 import { SidebarLink } from "../components/SidebarLink";
+import cn from "classnames";
 
 interface Props {
   children: ReactNode;
@@ -27,7 +28,7 @@ export const SidebarLayout: FC<Props> = ({ children }) => {
           {navigationLists.map((navigationList) => (
             <React.Fragment key={navigationList.id}>
               {navigationList.label && (
-                <span className="mt-10 mb-2 block text-xs font-medium text-neutral-400 uppercase tracking-wide">
+                <span className="mt-10 px-2 mb-2 block text-xs font-medium text-neutral-400 uppercase tracking-wide">
                   {navigationList.label}
                 </span>
               )}

@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { NestedSidebarLayout } from "../../layouts/NestedSidebarLayout";
 import { NextPageWithLayout } from "../_app";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import {
@@ -8,8 +7,10 @@ import {
   getAllPosts,
   serializeContent,
 } from "../../lib/mdx";
-import { PostList } from "../../components/PostList";
 import { Post } from "../../typings/Post";
+import { SidebarLayout } from "../../layouts/SidebarLayout";
+import { Sidebar } from "../../components/Sidebar";
+import { PostList } from "../../components/PostList";
 
 interface Props {
   post: Post;
@@ -17,19 +18,28 @@ interface Props {
   mdxSource: MDXRemoteSerializeResult;
 }
 
-export const SinglePost: NextPageWithLayout<Props> = ({ post, mdxSource }) => {
+export const BlogPost: NextPageWithLayout<Props> = ({
+  posts,
+  post,
+  mdxSource,
+}) => {
   const { title, date } = post.data;
 
   return (
-    <main className="pt-20 col-span-9 col-start-8 px-[calc(100vw/16)] h-screen overflow-scroll">
-      <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
-      <p className="text-lg opacity-60 mt-2">
-        Posted on {date} &middot; {post.readingTime}
-      </p>
-      <article className="mt-10 prose prose-neutral">
-        <MDXRemote {...mdxSource} />
-      </article>
-    </main>
+    <>
+      <Sidebar size="large">
+        <PostList posts={posts} />
+      </Sidebar>
+      <main className="pt-20 col-span-9 px-[calc(100vw/16)] h-screen overflow-scroll">
+        <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
+        <p className="text-lg opacity-60 mt-2">
+          Posted on {date} &middot; {post.readingTime}
+        </p>
+        <article className="mt-10 prose prose-neutral dark:prose-invert">
+          <MDXRemote {...mdxSource} />
+        </article>
+      </main>
+    </>
   );
 };
 
@@ -58,15 +68,8 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
   };
 };
 
-SinglePost.getLayout = (page) => {
-  const posts = page.props.posts;
-
-  return (
-    <NestedSidebarLayout>
-      <PostList posts={posts} />
-      {page}
-    </NestedSidebarLayout>
-  );
+BlogPost.getLayout = (page) => {
+  return <SidebarLayout>{page}</SidebarLayout>;
 };
 
-export default SinglePost;
+export default BlogPost;

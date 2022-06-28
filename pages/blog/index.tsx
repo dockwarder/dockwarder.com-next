@@ -1,14 +1,26 @@
 import { GetStaticProps } from "next";
 import { PostList } from "../../components/PostList";
-import { NestedSidebarLayout } from "../../layouts/NestedSidebarLayout";
+import { Sidebar } from "../../components/Sidebar";
+import { SidebarLayout } from "../../layouts/SidebarLayout";
 import { getAllPosts } from "../../lib/mdx";
+import { Post } from "../../typings/Post";
 import { NextPageWithLayout } from "../_app";
 
-export const Blog: NextPageWithLayout = () => {
-  return null;
+interface Props {
+  posts: Post[];
+}
+
+export const Blog: NextPageWithLayout<Props> = ({ posts }) => {
+  return (
+    <>
+      <Sidebar size="large">
+        <PostList posts={posts} />
+      </Sidebar>
+    </>
+  );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = () => {
   const posts = getAllPosts();
 
   return {
@@ -17,14 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 Blog.getLayout = (page) => {
-  const posts = page.props.posts;
-
-  return (
-    <NestedSidebarLayout>
-      <PostList posts={posts} />
-      {page}
-    </NestedSidebarLayout>
-  );
+  return <SidebarLayout>{page}</SidebarLayout>;
 };
 
 export default Blog;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { NavigationLink } from "../lib/data/navigation.d";
+import { NavigationLink } from "../typings/Navigation";
 import cn from "classnames";
 
 interface Props {
@@ -17,15 +17,16 @@ export const SidebarLink: FC<Props> = ({ navigationLink }) => {
       : route.includes(navigationLink.href);
 
   const additionalClasses = cn({
-    "bg-neutral-900 text-white": isActive && !navigationLink.disabled,
-    "hover:bg-neutral-200": !isActive,
+    "bg-neutral-900 dark:bg-white text-white dark:text-black":
+      isActive && !navigationLink.disabled,
+    "hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:text-white": !isActive,
     "pointer-events-none": navigationLink.disabled,
   });
 
   return (
     <Link href={navigationLink.href}>
       <a
-        className={`${additionalClasses} p-2 rounded-lg flex font-medium text-sm`}
+        className={`${additionalClasses} transition duration-75 p-2 rounded-lg flex font-medium text-sm`}
         target={navigationLink.target ?? "_self"}
       >
         <Icon className="w-5 h-5 mr-4" />
