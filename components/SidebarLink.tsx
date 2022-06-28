@@ -17,21 +17,25 @@ export const SidebarLink: FC<Props> = ({ navigationLink }) => {
       : route.includes(navigationLink.href);
 
   const additionalClasses = cn({
-    "bg-neutral-900 text-white": isActive,
+    "bg-neutral-900 text-white": isActive && !navigationLink.disabled,
     "hover:bg-neutral-200": !isActive,
+    "pointer-events-none": navigationLink.disabled,
   });
 
   return (
     <Link href={navigationLink.href}>
       <a
         className={`${additionalClasses} p-2 rounded-lg flex font-medium text-sm`}
+        target={navigationLink.target ?? "_self"}
       >
         <Icon className="w-5 h-5 mr-4" />
         <div>
           {navigationLink.label}
-          <p className="text-xs mt-0.5 font-normal opacity-60">
-            {navigationLink.subtitle}
-          </p>
+          {navigationLink.subtitle && (
+            <p className="text-xs mt-0.5 font-normal opacity-60">
+              {navigationLink.subtitle}
+            </p>
+          )}
         </div>
       </a>
     </Link>

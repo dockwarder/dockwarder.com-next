@@ -15,7 +15,7 @@ interface Props {
 
 export const SidebarLayout: FC<Props> = ({ children }) => {
   return (
-    <div className="grid grid-cols-[repeat(16,minmax(0,1fr))]">
+    <div className="px-4 lg:px-0 grid grid-cols-1 lg:grid-cols-[repeat(16,minmax(0,1fr))]">
       <Sidebar className="hidden lg:block">
         <Link href="/">
           <a className="px-2">

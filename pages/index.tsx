@@ -13,7 +13,7 @@ interface Props {
 
 const Home: NextPageWithLayout<Props> = ({ mdxSource }) => {
   return (
-    <main className="pt-16 prose prose-neutral h-screen overflow-scroll col-span-9 col-start-6">
+    <main className="pt-16 prose prose-neutral h-screen overflow-scroll lg:col-span-9 lg:col-start-6">
       <MDXRemote {...mdxSource} />
     </main>
   );
