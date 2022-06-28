@@ -24,7 +24,7 @@ export const SidebarLink: FC<Props> = ({ navigationLink }) => {
   return (
     <Link href={navigationLink.href}>
       <a
-        className={`${additionalClasses} p-2 rounded-md flex font-medium text-sm`}
+        className={`${additionalClasses} p-2 rounded-lg flex font-medium text-sm`}
       >
         <Icon className="w-5 h-5 mr-4" />
         <div>

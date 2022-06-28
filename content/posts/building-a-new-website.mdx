@@ -3,8 +3,28 @@ title: Building a New Website
 date: "June 7th, 2022"
 ---
 
-This is how I built my Website
+My personal website is an [over-engineered playground](https://google.com) where I can tinker, learn new things, test new tools, break all the rules, and just scratch that itch deep in my brain that wants to understand how the hell web software works.
 
-### Technology?
+My site has gone through several iterations over the years, and what you're seeing now (as of December 2021) is version 5. It's a borderline SaaS-ready web application with all sorts of bells and whistles like user account management, emails, comments, GraphQL, caching, end-to-end tests, and so much more.
 
-Next.js... you dingus!
+While it's somewhat fresh in my head, I wanted to document how this version of the site works, what tools I use to pull it together, and the problems that I had to solve to get everything functioning as you see it today.
+
+## Ideas and goals
+
+Most of the time, I'm just hacking on my site for fun and not-profit. But while building this latest version, I did manage to have a few key ideas and goals in mind:
+
+### Reduce friction for iteration and writing
+
+Last year I wrote about why you're not updating your personal website. One of the key reasons I mentioned is that it's too hard to add and edit content for most people who roll their own codebase. If you have to open a pull request every time you want to write a note or make a small edit, you've lost.
+
+So this new version of my website was built with the idea that I should be able to add, edit, and delete content directly from the front-end. This means that everything needs to be backed by a database or CMS, which quickly adds complexity. But at the end of the day, adding a bookmark should be a matter of pasting a URL and clicking save. Writing a blog post should be a matter of typing some markdown and clicking publish.
+
+Extra friction on these processes would make me less likely to keep things up to date or share new things.
+
+### A playground for ideas
+
+I've been collecting a list of frameworks and tools to try someday on Github, ranging from front-end JavaScript frameworks to small utilities for writing better CSS. I want my website to be a playground where it's safe to try new technologies and packages in a way that can be easily isolated and easily deleted. This requirement made using Next.js an easy decision because of way it supports hybrid page rendering strategies — static, server-rendered, or client-rendered. More on this below.
+
+### Fast
+
+As noted by The Zen of GitHub, "it's not fully shipped until it's fast." While my site isn't the fastest website out there, it's still pretty fast. It turns out it's really hard to make a fast website in 2021, and between caching, preloading, and async computation, I think I've managed to make things feel snappy enough.

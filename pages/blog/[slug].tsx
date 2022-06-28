@@ -1,33 +1,43 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { NestedSidebarLayout } from "../../layouts/NestedSidebarLayout";
 import { NextPageWithLayout } from "../_app";
-import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { getAllPosts, getPostBySlug } from "../../lib/services/blogService";
+import {
+  getPostBySlug,
+  getSlugs,
+  getAllPosts,
+  serializeContent,
+} from "../../lib/mdx";
 import { PostList } from "../../components/PostList";
 import { Post } from "../../typings/Post";
 
 interface Props {
   post: Post;
+  posts: Post[];
   mdxSource: MDXRemoteSerializeResult;
 }
 
 export const SinglePost: NextPageWithLayout<Props> = ({ post, mdxSource }) => {
-  const { title } = post.frontMatter;
+  const { title, date } = post.data;
 
   return (
-    <main className="col-span-7">
-      <h1>{title}</h1>
-      <MDXRemote {...mdxSource} />
+    <main className="pt-20 col-span-9 col-start-8 px-[calc(100vw/16)] h-screen overflow-scroll">
+      <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
+      <p className="text-lg opacity-60 mt-2">
+        Posted on {date} &middot; {post.readingTime}
+      </p>
+      <article className="mt-10 prose prose-neutral">
+        <MDXRemote {...mdxSource} />
+      </article>
     </main>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getAllPosts();
-  const paths = posts.map((post) => ({
+  const slugs = getSlugs();
+  const paths = slugs.map((slug) => ({
     params: {
-      slug: post.slug,
+      slug,
     },
   }));
 
@@ -36,15 +46,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
   const posts = getAllPosts();
-  const { frontMatter, content } = getPostBySlug(slug as string);
-  const mdxSource = await serialize(content);
+  const { content, ...post } = getPostBySlug(slug as string);
+  const mdxSource = await serializeContent(content);
 
   return {
     props: {
-      post: {
-        frontMatter,
-        content,
-      },
+      post,
       posts,
       mdxSource,
     },

@@ -4,9 +4,8 @@ import { NextPageWithLayout } from "./_app";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
+import { serializeContent } from "../lib/mdx";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { components } from "../lib/mdxComponents";
 
 interface Props {
   mdxSource: MDXRemoteSerializeResult;
@@ -14,22 +13,23 @@ interface Props {
 
 const Home: NextPageWithLayout<Props> = ({ mdxSource }) => {
   return (
-    <main className="pt-16 col-span-9 col-start-6">
-      <MDXRemote {...mdxSource} components={components} />
+    <main className="pt-16 prose prose-neutral h-screen overflow-scroll col-span-9 col-start-6">
+      <MDXRemote {...mdxSource} />
     </main>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   const homeContent = fs.readFileSync(
-    path.join(process.cwd(), "content/home.mdx"),
-    "utf-8"
+    path.join(process.cwd(), "content/home.mdx")
   );
   const { content } = matter(homeContent);
-  const mdxSource = await serialize(content);
+  const mdxSource = await serializeContent(content);
 
   return {
-    props: { mdxSource },
+    props: {
+      mdxSource,
+    },
   };
 };
 

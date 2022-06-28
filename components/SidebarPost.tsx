@@ -25,11 +25,11 @@ export const SidebarPost: FC<Props> = ({ post }) => {
   return (
     <Link href={`/blog/${post.slug}`}>
       <a>
-        <div className={`${additionalClasses} p-2 px-3 rounded-md`}>
-          <span className="block text-sm font-medium">
-            {post.frontMatter.title}
+        <div className={`${additionalClasses} p-2 px-3 rounded-lg`}>
+          <span className="block text-sm font-medium">{post.data.title}</span>
+          <span className="block text-xs mt-0.5">
+            {post.data.date} - {post.readingTime}
           </span>
-          <span className="block text-xs mt-0.5">{post.frontMatter.date}</span>
         </div>
       </a>
     </Link>

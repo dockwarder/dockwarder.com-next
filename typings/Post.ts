@@ -1,5 +1,6 @@
 export type Post = {
-  frontMatter: { [key: string]: any };
+  data: { [key: string]: any };
+  readingTime: string;
   content?: string;
-  slug?: string;
+  slug: string;
 };
