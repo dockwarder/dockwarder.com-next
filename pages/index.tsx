@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 Home.getLayout = (page) => {
-  return <SidebarLayout float>{page}</SidebarLayout>;
+  return <SidebarLayout>{page}</SidebarLayout>;
 };
 
 export default Home;
