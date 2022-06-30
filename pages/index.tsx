@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { SidebarLayout } from "../layouts/SidebarLayout";
 import { NextPageWithLayout } from "./_app";
 import fs from "fs";
@@ -26,12 +26,14 @@ const Home: NextPageWithLayout<Props> = ({ mdxSource }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const homeContent = fs.readFileSync(
     path.join(process.cwd(), "content/home.mdx")
   );
   const { content } = matter(homeContent);
   const mdxSource = await serializeContent(content);
+
+  console.log(process.env.NEXT_RUNTIME);
 
   return {
     props: {
